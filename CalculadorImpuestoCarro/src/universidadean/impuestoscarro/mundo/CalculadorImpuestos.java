@@ -130,7 +130,30 @@ public class CalculadorImpuestos {
      */
     public double calcularPago(boolean descProntoPago, boolean descServicioPublico, boolean descTrasladoCuenta) {
         double pago = 0.0;
-        double precio = darVehiculoActual().darPrecio();
+        double pagoImpuesto = 0.0;
+        double descuentoPagoPronto = 0.0;
+        double descuentoServicioPublico = 0.0;
+        double descuentoTrasladoRegistro = 0.0;
+        double precioVehiculo = darVehiculoActual().darPrecio();
+
+        if(precioVehiculo>=0 && precioVehiculo<=30000000){
+            pagoImpuesto =  (1.5*precioVehiculo)/100;
+        }else if (precioVehiculo>30000000 && precioVehiculo<=70000000){
+            pagoImpuesto =  (2.0*precioVehiculo)/100;
+        }else if(precioVehiculo>70000000 && precioVehiculo<=200000000){
+            pagoImpuesto =  (2.5*precioVehiculo)/100;
+        }else{
+            pagoImpuesto =  (4*precioVehiculo)/100;
+        }
+
+        if(descProntoPago){
+            descuentoPagoPronto = (10 * precioVehiculo)/100;
+        }if(descServicioPublico){
+            descuentoServicioPublico = 50000;
+        }if(descTrasladoCuenta){
+            descuentoTrasladoRegistro = (5 * precioVehiculo)/100;
+        }
+        pago = ((((precioVehiculo + pagoImpuesto) - descuentoPagoPronto) - descuentoServicioPublico) -descuentoTrasladoRegistro);
 
         // TODO: Encontrar el valor del pago de impuesto de acuerdo a los datos de entrada
 

@@ -14,6 +14,7 @@ package universidadean.impuestoscarro.interfaz;
 
 import universidadean.impuestoscarro.mundo.CalculadorImpuestos;
 import universidadean.impuestoscarro.mundo.Vehiculo;
+import universidadean.impuestoscarro.interfaz.PanelVehiculo.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -127,10 +128,14 @@ public class InterfazImpuestosCarro extends JFrame {
      * Calcula el pago del impuesto según el vehículo.
      */
     public void calcularImpuestos() {
+
+
         // Pide al panel respectivo la información de los descuentos
         boolean descProntoPago = panelDescuentos.hayDescuentoProntoPago();
         boolean descServicioPublico = panelDescuentos.hayDescuentoServicioPublico();
         boolean descTrasladoCuenta = panelDescuentos.hayDescuentoTrasladoCuenta();
+
+
 
         // Calcula el valor de los impuestos
         double pago = calculador.calcularPago(descProntoPago, descServicioPublico, descTrasladoCuenta);
